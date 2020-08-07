@@ -29,17 +29,15 @@ pipeline {
         }
     }
     post {
-        def status = "X"
         success {
             echo "success"
+            httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: '{"text":"pass"}', responseHandle: 'NONE', url: 'https://api.flock.com/hooks/sendMessage/a9705b01-3454-4aea-a87d-1fdd0e8d98c0', wrapAsMultipart: false
+
         }
         failure {
             echo "fail"
+             httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: '{"text":"fail"}', responseHandle: 'NONE', url: 'https://api.flock.com/hooks/sendMessage/a9705b01-3454-4aea-a87d-1fdd0e8d98c0', wrapAsMultipart: false
         }
-
-        // httpRequest contentType: 'TEXT_PLAIN', customHeaders: [[maskValue: false, name: '', value: '']], httpMode: 'POST', requestBody: '''Project Name: hello-world-webapp
-        // Build Commit: asdasdsa
-        // Build Status: ''' + status, responseHandle: 'NONE', url: 'https://api.flock.com/hooks/sendMessage/55c8786a-8494-4233-9659-ce928d5ebd1b', wrapAsMultipart: false
     }
 
     
