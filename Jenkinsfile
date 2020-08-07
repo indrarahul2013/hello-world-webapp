@@ -34,14 +34,18 @@ pipeline {
             
             script{
                 shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
-                echo shortCommit
-                httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: '{"text":"Project Name: hello-world-webapp\nBuild Commit: ${scmVars.GIT_COMMIT}\nBuild Status: Chal Gya Bhai!!"}', responseHandle: 'NONE', url: 'https://api.flock.com/hooks/sendMessage/a9705b01-3454-4aea-a87d-1fdd0e8d98c0', wrapAsMultipart: false
+                def reqBody = '{"text":"Project Name: hello-world-webapp\nBuild Commit: '+shortCommit+'\nBuild Status: Chal Gya Bhai!!"}'
+                httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody:reqBody , responseHandle: 'NONE', url: 'https://api.flock.com/hooks/sendMessage/a9705b01-3454-4aea-a87d-1fdd0e8d98c0', wrapAsMultipart: false
             }
             
         }
         failure {
             echo "fail"
-            httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: '{"text":"Project Name: hello-world-webapp\nBuild Commit: ${scmVars.GIT_COMMIT}\nBuild Status: Fat Gya Bhai!!"}', responseHandle: 'NONE', url: 'https://api.flock.com/hooks/sendMessage/a9705b01-3454-4aea-a87d-1fdd0e8d98c0', wrapAsMultipart: false
+            script{
+                shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
+                def reqBody = '{"text":"Project Name: hello-world-webapp\nBuild Commit: '+shortCommit+'\nBuild Status: Fat Gya Bhai!!"}'
+                httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody:reqBody , responseHandle: 'NONE', url: 'https://api.flock.com/hooks/sendMessage/a9705b01-3454-4aea-a87d-1fdd0e8d98c0', wrapAsMultipart: false
+            }
         }
     }
 
