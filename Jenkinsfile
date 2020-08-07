@@ -36,19 +36,19 @@ pipeline {
         }
     }
     post {
-        def status = ""
+        // def status = ""
         success {
-            status = "Success"
+            def status = "Success"
             echo status
         }
         failure {
-            status = "Fat Gya Bhai"
+            def status = "Fat Gya Bhai"
             echo status
         }
 
-        httpRequest contentType: 'TEXT_PLAIN', customHeaders: [[maskValue: false, name: '', value: '']], httpMode: 'POST', requestBody: '''Project Name: hello-world-webapp
-        Build Commit: asdasdsa
-        Build Status: ''' + status, responseHandle: 'NONE', url: 'https://api.flock.com/hooks/sendMessage/55c8786a-8494-4233-9659-ce928d5ebd1b', wrapAsMultipart: false
+        // httpRequest contentType: 'TEXT_PLAIN', customHeaders: [[maskValue: false, name: '', value: '']], httpMode: 'POST', requestBody: '''Project Name: hello-world-webapp
+        // Build Commit: asdasdsa
+        // Build Status: ''' + status, responseHandle: 'NONE', url: 'https://api.flock.com/hooks/sendMessage/55c8786a-8494-4233-9659-ce928d5ebd1b', wrapAsMultipart: false
     }
 
     
