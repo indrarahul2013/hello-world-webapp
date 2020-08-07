@@ -38,12 +38,10 @@ pipeline {
     post {
         // def status = ""
         success {
-            def status = "Success"
-            echo status
+            echo "success"
         }
         failure {
-            def status = "Fat Gya Bhai"
-            echo status
+            echo "fail"
         }
 
         // httpRequest contentType: 'TEXT_PLAIN', customHeaders: [[maskValue: false, name: '', value: '']], httpMode: 'POST', requestBody: '''Project Name: hello-world-webapp
