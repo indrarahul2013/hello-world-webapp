@@ -37,10 +37,15 @@ pipeline {
     }
     post {
         success {
+            def response = httpRequest 'https://api.flock.com/hooks/sendMessage/55c8786a-8494-4233-9659-ce928d5ebd1b'
+            println("Status: "+response.status)
+            println("Content: "+response.content)
             echo "Success"
         }
         failure {
             echo "Fat Gya Bhai"
         }
     }
+
+    
 }
