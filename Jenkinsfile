@@ -31,12 +31,11 @@ pipeline {
     post {
         success {
             echo "success"
-            httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: '{"text":"pass"}', responseHandle: 'NONE', url: 'https://api.flock.com/hooks/sendMessage/a9705b01-3454-4aea-a87d-1fdd0e8d98c0', wrapAsMultipart: false
-
+            httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: '{"text":"Project Name: hello-world-webapp\nBuild Commit: ${env.GIT_COMMIT}\nBuild Status: Chal Gya Bhai!!"}', responseHandle: 'NONE', url: 'https://api.flock.com/hooks/sendMessage/a9705b01-3454-4aea-a87d-1fdd0e8d98c0', wrapAsMultipart: false
         }
         failure {
             echo "fail"
-             httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: '{"text":"fail"}', responseHandle: 'NONE', url: 'https://api.flock.com/hooks/sendMessage/a9705b01-3454-4aea-a87d-1fdd0e8d98c0', wrapAsMultipart: false
+            httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: '{"text":"Project Name: hello-world-webapp\nBuild Commit: ${env.GIT_COMMIT}\nBuild Status: Fat Gya Bhai!!"}', responseHandle: 'NONE', url: 'https://api.flock.com/hooks/sendMessage/a9705b01-3454-4aea-a87d-1fdd0e8d98c0', wrapAsMultipart: false
         }
     }
 
