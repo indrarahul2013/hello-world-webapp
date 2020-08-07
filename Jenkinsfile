@@ -3,7 +3,6 @@ pipeline {
 
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
-        python "python"
         dockerTool "docker"
     }
 
@@ -12,13 +11,6 @@ pipeline {
             steps {
                 // Get some code from a GitHub repository
                 git 'https://github.com/indrarahul2013/hello-world-webapp'
-            }
-        }
-        stage('Build') {
-            steps {
-                
-                // Run Maven on a Unix agent.
-                sh "pip install -r requirements.txt"
             }
         }
         stage('Deploy') {
@@ -37,7 +29,7 @@ pipeline {
         }
     }
     post {
-        // def status = ""
+        def status = "X"
         success {
             echo "success"
         }
